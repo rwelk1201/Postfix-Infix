@@ -116,7 +116,6 @@ public class Parser {
 	}
 	
 	public boolean isValid(){
-		//TODO
-		return(false);
+		return infix2postfix() != null;
 	}
 }
