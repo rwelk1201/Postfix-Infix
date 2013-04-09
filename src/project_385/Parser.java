@@ -105,13 +105,13 @@ public class Parser {
 				tokens.add(String.valueOf(ch));
 			} else if (Character.isLetter(ch)) {
 				for (; i+1 < input.length() && (Character.isLetter(input.charAt(i+1)) || Character.isDigit(input.charAt(i+1))); i++);
-				tokens.add(input.substring(start, i));
+				tokens.add(input.substring(start, i+1));
 			} else if (Character.isDigit(ch)) {
 				for (; i+1 < input.length() && Character.isDigit(input.charAt(i+1)); i++);
-				tokens.add(input.substring(start, i));
+				tokens.add(input.substring(start, i+1));
 			}
 		}
-
+		System.out.println(tokens);
 		return tokens;
 	}
 	

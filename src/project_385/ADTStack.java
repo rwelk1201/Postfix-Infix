@@ -26,8 +26,12 @@ public class ADTStack<T> {
 	
 	public T pop(){
 		Node<T>tmp=top;
-		top=top.getNext();
-		return(tmp.getItem());		
+		if(tmp!=null){
+			top=top.getNext();
+			return(tmp.getItem());
+		}else{
+			return(null);
+		}	
 	}
 	
 	public T peek(){

@@ -85,11 +85,11 @@ public class ADTList<T>{
 		
 	}
 
-	public boolean add(Object item) {				//inserts object [item] at end of list
+	public boolean add(T item) {				//inserts object [item] at end of list
 		if(isFull()){
 			ensureSize(curSize+1);
 		}
-		array[size()+1]=(T)item;
+		array[size()]=item;
 		numItems++;
 		return(true);
 	}
@@ -104,8 +104,8 @@ public class ADTList<T>{
 	}
 
 	public T get(int position) {						//return item at index [position]
-		if(position<=size()+1 && position>0){			//check if index is within bounds
-			return (T)array[position];					//return item
+		if(position<=size() && position>=0){			//check if index is within bounds
+			return array[position];					//return item
 		}else{
 			return null;								//otherwise, return nothing
 		}
@@ -121,7 +121,7 @@ public class ADTList<T>{
 	}
 
 	public boolean remove(int position) {									//remove item at index [position]
-		if(position>0 && position<=size() && array[position]!=null){		//check if index is within bounds
+		if(position>=0 && position<=size() && array[position]!=null){		//check if index is within bounds
 			for(int i=position;i<size();i++){								//loop through array, shifting each value
 				array[i]=array[i+1];										//after position one place to the left
 			}
@@ -133,5 +133,14 @@ public class ADTList<T>{
 
 	public void clear() {		//clear array
 		initArray();			//resets array and numItems
+	}
+	
+	public String toString(){
+		String output="[";
+		for(T item:array){
+			output+=item+",";
+		}
+		output=output.substring(0,output.length()-1)+"]";
+		return(output);
 	}
 }

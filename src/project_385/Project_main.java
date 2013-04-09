@@ -9,6 +9,9 @@ public class Project_main extends JFrame{
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Parser test=new Parser("a+b");
+		System.out.println(test.infix2Postfix());
+		System.out.println(test.postfix2Infix());
 		
 	}
 	
