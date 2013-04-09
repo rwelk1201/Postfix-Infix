@@ -1,13 +1,9 @@
 package project_385;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 import javax.swing.*;
 
 public class Project_main extends JFrame{
+	private static final long serialVersionUID = 5107341313018538968L;
 
 	/**
 	 * @param args

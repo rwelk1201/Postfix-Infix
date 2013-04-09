@@ -2,7 +2,7 @@ package project_385;
 
 public class ADTStack<T> {
 
-	private Node top;
+	private Node<T> top;
 	
 	public ADTStack() {
 		top=null;
@@ -18,17 +18,16 @@ public class ADTStack<T> {
 	
 	public void push(T newItem){
 		if(!isEmpty()){
-			Node tmp=top;
-			top=new Node(newItem, top);
+			top=new Node<T>(newItem, top);
 		}else{
-			top=new Node(newItem);
+			top=new Node<T>(newItem);
 		}
 	}
 	
-	public Node pop(){
-		Node tmp=top;
+	public T pop(){
+		Node<T>tmp=top;
 		top=top.getNext();
-		return(tmp);		
+		return(tmp.getItem());		
 	}
 	
 	public Object peek(){
@@ -45,7 +44,7 @@ public class ADTStack<T> {
 	
 	public String toString(){
 		String output="[top:"+top.getItem();
-		Node curNode=top.getNext();
+		Node<T>curNode=top.getNext();
 		
 		while(curNode!=null){
 			output+=","+curNode.getItem();

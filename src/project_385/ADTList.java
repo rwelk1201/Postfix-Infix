@@ -9,7 +9,7 @@ package project_385;
 // ----- 	array: 		underlying array structure			-----
 // -----	numItems:	tracker for current size of array	-----
 // -----	MAXSIZE:	pseudo-constant for size of array	-----
-
+@SuppressWarnings(value = { "unchecked" })
 public class ADTList<T>{
 
 	private T array[];

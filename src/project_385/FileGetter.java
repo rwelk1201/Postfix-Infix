@@ -8,6 +8,10 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 
 public class FileGetter extends JFileChooser {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5737337237919191591L;
 	boolean hasError;
 	String output="";
 	
