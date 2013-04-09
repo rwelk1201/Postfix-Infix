@@ -19,7 +19,7 @@ public class Parser {
 			case "+":
 			case "-":
 				return 3;
-			default:
+			default: // variable or number
 				return -1;
 		}
 	}
@@ -38,8 +38,6 @@ public class Parser {
 		}
 	}
 	
-	private 
-	
 	public String infix2Postfix(){
 		
 		ADTStack<String> stack = new ADTStack<String>();
@@ -47,29 +45,53 @@ public class Parser {
 		
 		for (int i = 0; i < tokens.length(); i++) {
 			if (tokens[i] == "(") {
-				stack.push(tokens[i]);
+				stack.push(tokens[i]).append(' ');
 			} else if (tokens[i] == ")") {
 				while (!stack.isEmpty() && stack[0] != "(") {
-					buffer.append(stack.pop());
+					buffer.append(stack.pop()).append(' ');
 				}
 				stack.pop(); // assume it's a left paren
 			} else if (isOperator(tokens[i].charAt(0)) {
 				while (!stack.isEmpty() > 0 && precedence(stack[0]) > precedence(stack[i])) {
-					buffer.append(stack.pop());
+					buffer.append(stack.pop()).append(' ');
 				}
 			} else {
-				buffer.append(tokens[i]);
+				buffer.append(tokens[i]).append(' ');
 			}
 		}
 		while (!stack.isEmpty()) {
-			buffer.append(stack.pop());
+			buffer.append(stack.pop()).append(' ');
 		}
+		buffer.setLength(buffer.length() - 1);
 		return buffer.toString();
 	}
 	
 	public String postfix2Infix(){
-		// TODO pseudocode
-		return("post-2-in");
+		
+		ADTStack<String> stack = new ADTStack<String>();
+		String output, operand1, operand2 = "";
+		
+		for (int i = 0; i < tokens.size(); i++) {
+			if (isOperator(tokens[i].charAt(0))) {
+				operand2 = stack.pop();
+				operand1 = stack.pop();
+				if (operand1 == null || opernad2 == null) {
+					return null;
+				}
+				output += "(" + operand1 + tokens[i] + operand2 + ")";
+				stack.push(output);
+			} else {
+				stack.push(tokens[i]);
+			}
+		}
+		
+		output = stack.pop();
+		
+		if (!stack.isEmpty()) {
+			return null;
+		}
+		
+		return output;
 	}
 	
 	public ADTList<String> tokenizer(String input) {
