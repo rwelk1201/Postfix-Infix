@@ -43,20 +43,20 @@ public class Parser {
 		ADTStack<String> stack = new ADTStack<String>();
 		StringBuffer buffer = new StringBuffer();
 		
-		for (int i = 0; i < tokens.length(); i++) {
-			if (tokens[i] == "(") {
-				stack.push(tokens[i]).append(' ');
-			} else if (tokens[i] == ")") {
-				while (!stack.isEmpty() && stack[0] != "(") {
+		for (int i = 0; i < tokens.size(); i++) {
+			if (tokens.get(i) == "(") {
+				stack.push(tokens.get(i));
+			} else if (tokens.get(i) == ")") {
+				while (!stack.isEmpty() && stack.peek() != "(") {
 					buffer.append(stack.pop()).append(' ');
 				}
 				stack.pop(); // assume it's a left paren
-			} else if (isOperator(tokens[i].charAt(0)) {
-				while (!stack.isEmpty() > 0 && precedence(stack[0]) > precedence(stack[i])) {
+			} else if (isOperator(tokens.get(i).charAt(0))) {
+				while (!stack.isEmpty() && precedence(stack.peek()) > precedence(tokens.get(i))) {
 					buffer.append(stack.pop()).append(' ');
 				}
 			} else {
-				buffer.append(tokens[i]).append(' ');
+				buffer.append(tokens.get(i)).append(' ');
 			}
 		}
 		while (!stack.isEmpty()) {
@@ -72,16 +72,16 @@ public class Parser {
 		String output, operand1, operand2 = "";
 		
 		for (int i = 0; i < tokens.size(); i++) {
-			if (isOperator(tokens[i].charAt(0))) {
+			if (isOperator(tokens.get(i).charAt(0))) {
 				operand2 = stack.pop();
 				operand1 = stack.pop();
-				if (operand1 == null || opernad2 == null) {
+				if (operand1 == null || operand2 == null) {
 					return null;
 				}
-				output += "(" + operand1 + tokens[i] + operand2 + ")";
+				output += "(" + operand1 + tokens.get(i) + operand2 + ")";
 				stack.push(output);
 			} else {
-				stack.push(tokens[i]);
+				stack.push(tokens.get(i));
 			}
 		}
 		
@@ -98,7 +98,7 @@ public class Parser {
 	
 		ADTList<String> tokens = new ADTList<String>();
 		
-		for (int i = 0; i < input.length; i++) {
+		for (int i = 0; i < input.length(); i++) {
 			int start = i;
 			char ch = input.charAt(i);
 			if (isOperator(ch)) {
@@ -107,7 +107,7 @@ public class Parser {
 				for (; i+1 < input.length() && (Character.isLetter(input.charAt(i+1)) || Character.isDigit(input.charAt(i+1))); i++);
 				tokens.add(input.substring(start, i));
 			} else if (Character.isDigit(ch)) {
-				for (; i+1 < input.length() && Character.isDigit(input.charAt(i+1))); i++);
+				for (; i+1 < input.length() && Character.isDigit(input.charAt(i+1)); i++);
 				tokens.add(input.substring(start, i));
 			}
 		}
@@ -116,6 +116,6 @@ public class Parser {
 	}
 	
 	public boolean isValid(){
-		return infix2postfix() != null;
+		return infix2Postfix() != null;
 	}
 }
