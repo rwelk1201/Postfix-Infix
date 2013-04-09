@@ -69,7 +69,7 @@ public class Parser {
 	public String postfix2Infix(){
 		
 		ADTStack<String> stack = new ADTStack<String>();
-		String output, operand1, operand2 = "";
+		String output="", operand1, operand2;
 		
 		for (int i = 0; i < tokens.size(); i++) {
 			if (isOperator(tokens.get(i).charAt(0))) {

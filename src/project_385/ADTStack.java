@@ -30,7 +30,7 @@ public class ADTStack<T> {
 		return(tmp.getItem());		
 	}
 	
-	public Object peek(){
+	public T peek(){
 		if(!isEmpty()){
 			return top.getItem();
 		}else{
