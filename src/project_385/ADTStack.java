@@ -47,7 +47,10 @@ public class ADTStack<T> {
 	}
 	
 	public String toString(){
-		String output="[top:"+top.getItem();
+		if(isEmpty()){
+			return("Empty");
+		}
+		String output="["+top.getItem();
 		Node<T>curNode=top.getNext();
 		
 		while(curNode!=null){

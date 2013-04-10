@@ -9,10 +9,14 @@ public class Project_main extends JFrame{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Parser test=new Parser("a+b");
-		System.out.println(test.infix2Postfix());
-		System.out.println(test.postfix2Infix());
-		
+		String[] lines = getFile().split("\\n");
+		for(String line:lines){
+			Parser test=new Parser(line);
+			System.out.println("Original: " + line);
+			System.out.println("Postfix : " + test.infix2Postfix());
+			System.out.println("Infix   : " + test.postfix2Infix());
+			System.out.println();
+		}
 	}
 	
 	public static String getFile(){

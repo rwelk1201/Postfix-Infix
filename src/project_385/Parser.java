@@ -15,10 +15,10 @@ public class Parser {
 				return 1;
 			case "*":
 			case "/":
-				return 2;
+				return 3;
 			case "+":
 			case "-":
-				return 3;
+				return 2;
 			default: // variable or number
 				return -1;
 		}
@@ -26,8 +26,8 @@ public class Parser {
 	
 	private boolean isOperator(char ch) {
 		switch (ch) {
-			case '(':
-			case ')':
+			//case '(':		test, parenths not operators
+			//case ')':
 			case '*':
 			case '/':
 			case '+':
@@ -42,19 +42,23 @@ public class Parser {
 		
 		ADTStack<String> stack = new ADTStack<String>();
 		StringBuffer buffer = new StringBuffer();
-		
 		for (int i = 0; i < tokens.size(); i++) {
-			if (tokens.get(i) == "(") {
+			if (tokens.get(i).equals("(")) {
 				stack.push(tokens.get(i));
-			} else if (tokens.get(i) == ")") {
-				while (!stack.isEmpty() && stack.peek() != "(") {
+			} else if (tokens.get(i).equals(")")) {
+				while (!stack.isEmpty() && !stack.peek().equals("(")) {
 					buffer.append(stack.pop()).append(' ');
 				}
-				stack.pop(); // assume it's a left paren
+				if (!stack.peek().equals("(")) {
+					return("Mismatched Parentheses");
+				} else {
+					stack.pop(); // assume it's a left paren
+				}
 			} else if (isOperator(tokens.get(i).charAt(0))) {
-				while (!stack.isEmpty() && precedence(stack.peek()) > precedence(tokens.get(i))) {
+				while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(tokens.get(i))) {
 					buffer.append(stack.pop()).append(' ');
 				}
+				stack.push(tokens.get(i));
 			} else {
 				buffer.append(tokens.get(i)).append(' ');
 			}
@@ -101,7 +105,7 @@ public class Parser {
 		for (int i = 0; i < input.length(); i++) {
 			int start = i;
 			char ch = input.charAt(i);
-			if (isOperator(ch)) {
+			if (isOperator(ch) || ch=='(' || ch==')') {
 				tokens.add(String.valueOf(ch));
 			} else if (Character.isLetter(ch)) {
 				for (; i+1 < input.length() && (Character.isLetter(input.charAt(i+1)) || Character.isDigit(input.charAt(i+1))); i++);
@@ -111,7 +115,6 @@ public class Parser {
 				tokens.add(input.substring(start, i+1));
 			}
 		}
-		System.out.println(tokens);
 		return tokens;
 	}
 	
