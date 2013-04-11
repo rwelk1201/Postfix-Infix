@@ -9,19 +9,11 @@ public class ADTStack<T> {
 	}
 
 	public boolean isEmpty() {	//returns true if the list is empty, false if otherwise
-		if(top==null){
-			return true;
-		}else{
-			return false;
-		}
+		return (top==null);
 	}
 	
 	public void push(T newItem){
-		if(!isEmpty()){
-			top=new Node<T>(newItem, top);
-		}else{
-			top=new Node<T>(newItem);
-		}
+		top=new Node<T>(newItem, top);
 	}
 	
 	public T pop(){
@@ -35,11 +27,10 @@ public class ADTStack<T> {
 	}
 	
 	public T peek(){
-		if(!isEmpty()){
-			return top.getItem();
-		}else{
-			return(null);
+		if(isEmpty()){
+			return null;
 		}
+		return top.getItem();
 	}
 	
 	public void clear(){
@@ -47,17 +38,12 @@ public class ADTStack<T> {
 	}
 	
 	public String toString(){
-		if(isEmpty()){
-			return("Empty");
+
+		StringBuilder buffer = new StringBuilder(']');
+		buffer.append(']');
+		for (Node<T> curNode = top; curNode != null; curNode = curNode.getNext()) {
+			buffer.append(',').append(curNode.getItem());
 		}
-		String output="["+top.getItem();
-		Node<T>curNode=top.getNext();
-		
-		while(curNode!=null){
-			output+=","+curNode.getItem();
-			curNode=curNode.getNext();
-		}
-		output+="]";
-		return(output);
+		return buffer.toString();
 	}
 }
