@@ -70,17 +70,18 @@ public class Parser {
 		return buffer.toString();
 	}
 	
-	public String postfix2Infix(){
+	public String postfix2Infix() {
+		
 		ADTList<String> newTokens=tokenizer(infix2Postfix());
 		ADTStack<String> stack = new ADTStack<String>();
-		String output="", operand1, operand2;
+		String operand1, operand2;
 		
 		for (int i = 0; i < newTokens.size(); i++) {
 			if (isOperator(newTokens.get(i).charAt(0))) {
 				operand2 = stack.pop();
 				operand1 = stack.pop();
 				if (operand1 == null || operand2 == null) {
-					return ("Expression not valid");
+					return null;
 				}
 				stack.push("(" + operand1 + newTokens.get(i) + operand2 + ")");
 			} else {
@@ -88,13 +89,7 @@ public class Parser {
 			}
 		}
 		
-		output = stack.pop();
-		
-		if (!stack.isEmpty()) {
-			return null;
-		}
-		
-		return output;
+		return stack.pop();
 	}
 	
 	public ADTList<String> tokenizer(String input) {
