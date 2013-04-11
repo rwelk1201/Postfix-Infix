@@ -37,13 +37,15 @@ public class ADTStack<T> {
 		top=null;
 	}
 	
-	public String toString(){
-
+	public String toString() {
 		StringBuilder buffer = new StringBuilder(']');
-		buffer.append(']');
-		for (Node<T> curNode = top; curNode != null; curNode = curNode.getNext()) {
-			buffer.append(',').append(curNode.getItem());
-		}
-		return buffer.toString();
+                buffer.append(']');
+                for (Node<T> curNode = top; curNode != null; curNode = curNode.getNext()) {
+                        if (curNode != top)
+                		buffer.append(',');
+            		buffer.append(curNode.getItem());
+                }
+        	buffer.append('[');
+                return buffer.reverse().toString();
 	}
 }
