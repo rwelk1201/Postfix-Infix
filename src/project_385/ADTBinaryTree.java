@@ -11,8 +11,12 @@ public class ADTBinaryTree<T> {
 		this.root=new BinaryNode<T>(item);
 	}
 	
-	public void setRoot(T item){
+	public void setRootItem(T item){
 		this.root=new BinaryNode<T>(item);
+	}
+	
+	public void setRoot(BinaryNode<T> node){
+		this.root=node;
 	}
 	
 	public BinaryNode<T> getRoot(){
