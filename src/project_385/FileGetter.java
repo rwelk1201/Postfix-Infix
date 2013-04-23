@@ -14,8 +14,10 @@ public class FileGetter extends JFileChooser {
 	private static final long serialVersionUID = -5737337237919191591L;
 	boolean hasError;
 	String output="";
+	public String fname = "";
 	
 	public FileGetter(){
+
 		JFileChooser fc = new JFileChooser();
 		int returnVal = fc.showOpenDialog(this.getParent());
 
@@ -23,6 +25,8 @@ public class FileGetter extends JFileChooser {
 			BufferedReader reader=null;
 			try {
 				reader = new BufferedReader(new FileReader(fc.getSelectedFile()));
+				fname = fc.getSelectedFile().toString();
+				fname = fname.substring(fname.lastIndexOf("\\")+1,fname.length());
 			}catch(FileNotFoundException e){
 				hasError=true;
 			}
@@ -48,7 +52,15 @@ public class FileGetter extends JFileChooser {
 	
 	public String getOutput(){
 		if(!failed()){
-			return(output);
+			return output;
+		}else{
+			return(null);
+		}
+	}
+	
+	public String getFilename(){
+		if(!failed()){
+			return fname;
 		}else{
 			return(null);
 		}
