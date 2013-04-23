@@ -19,7 +19,7 @@ public class Project_main extends JFrame{
 	public Project_main() {
 		this.setSize(400,300);
 		txtPane = new JTextPane();
-		txtPane.setText("Filler paragraph text");
+		txtPane.setText("");
 		getContentPane().add(txtPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
@@ -33,7 +33,7 @@ public class Project_main extends JFrame{
 
 		panel.add(btnChooseInputFile);
 		
-		lblFilename = new JLabel("Test.txt");
+		lblFilename = new JLabel("");
 		panel.add(lblFilename);
 		
 		btnChooseInputFile.addActionListener(new ActionListener() {
