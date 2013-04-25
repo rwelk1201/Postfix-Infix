@@ -18,6 +18,8 @@ public class Project_main extends JFrame{
 	JTextPane txtPane;
 	public Project_main() {
 		this.setSize(400,300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		txtPane = new JTextPane();
 		txtPane.setText("");
 		getContentPane().add(txtPane, BorderLayout.CENTER);
@@ -87,8 +89,13 @@ public class Project_main extends JFrame{
 			for(String line:lines){
 			Parser test=new Parser(line);
 			append("Original: " + line);
-			append("Postfix : " + test.infix2Postfix());
-			append("Infix : " + test.postfix2Infix());
+			String result=test.infix2Postfix();
+			if(result!=null){
+				append("Postfix : " + result);
+				append("Infix : " + test.postfix2Infix());
+			}else{
+				append("Invalid Expression");
+			}
 			append("");
 			}
 	}

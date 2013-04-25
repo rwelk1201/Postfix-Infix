@@ -26,8 +26,6 @@ public class Parser {
 	
 	private boolean isOperator(char ch) {
 		switch (ch) {
-			//case '(':		test, parenths not operators
-			//case ')':
 			case '*':
 			case '/':
 			case '+':
@@ -39,7 +37,10 @@ public class Parser {
 	}
 	
 	public String infix2Postfix(){
-		
+		if(tokens.size()<3){
+			return(null); //invalid expression, must have at least 2 operands and 1 operator
+		}		
+		String lastToken="";
 		ADTStack<String> stack = new ADTStack<String>();
 		StringBuffer buffer = new StringBuffer();
 		for (int i = 0; i < tokens.size(); i++) {
@@ -49,8 +50,8 @@ public class Parser {
 				while (!stack.isEmpty() && !stack.peek().equals("(")) {
 					buffer.append(stack.pop()).append(' ');
 				}
-				if (!stack.peek().equals("(")) {
-					return("Mismatched Parentheses");
+				if (stack.peek()==null) {
+					return(null);				//no closing parenth => bad expression
 				} else {
 					stack.pop(); // assume it's a left paren
 				}
@@ -60,10 +61,17 @@ public class Parser {
 				}
 				stack.push(tokens.get(i));
 			} else {
+				if(lastToken!="" && !lastToken.matches("[()\\+\\-\\*/]")){
+					return(null);	//if the last token processed was also a variable/constant => bad expression
+				}
 				buffer.append(tokens.get(i)).append(' ');
 			}
+			lastToken=tokens.get(i);
 		}
 		while (!stack.isEmpty()) {
+			if(stack.peek().equals("(")){
+				return("Mismatched Parentheses");
+			}
 			buffer.append(stack.pop()).append(' ');
 		}
 		buffer.setLength(buffer.length() - 1);
