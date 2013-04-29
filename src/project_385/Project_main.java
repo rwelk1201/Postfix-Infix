@@ -1,28 +1,24 @@
 package project_385;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
-
 import javax.swing.*;
 import javax.swing.text.Document;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Project_main extends JFrame{
+	private static final long serialVersionUID = -5082312227289434961L;
 	JLabel lblFilename;
 	JTextPane txtPane;
 	public Project_main() {
-		this.setSize(400,300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.setSize(500,400);
+		this.setMinimumSize(new Dimension(300,100));
 		txtPane = new JTextPane();
 		txtPane.setText("");
-		getContentPane().add(txtPane, BorderLayout.CENTER);
+	    JScrollPane scrollPane = new JScrollPane(txtPane);
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
@@ -89,14 +85,15 @@ public class Project_main extends JFrame{
 			for(String line:lines){
 			Parser test=new Parser(line);
 			append("Original: " + line);
-			String result=test.infix2Postfix();
-			if(result!=null){
-				append("Postfix : " + result);
-				append("Infix : " + test.postfix2Infix());
-			}else{
-				append("Invalid Expression");
+			if (test.infix2Postfix() == null) {
+				append("Invalid infix expression");
 			}
+			else
+			{
+			append("Postfix : " + test.infix2Postfix());
+			append("Infix : " + test.postfix2Infix());
 			append("");
+			}
 			}
 	}
 }
