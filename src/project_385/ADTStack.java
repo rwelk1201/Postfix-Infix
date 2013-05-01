@@ -1,5 +1,11 @@
 package project_385;
 
+/**
+ * A simple stack class for pushing, peeking, and popping items
+ * @author Matthew
+ *
+ * @param <T>
+ */
 public class ADTStack<T> {
 
 	private Node<T> top;
@@ -16,30 +22,39 @@ public class ADTStack<T> {
 	 */
 	public boolean isEmpty() { // returns true if the list is empty, false if
 								// otherwise
-		return (top == null);
+		return top == null;
 	}
 
-	/** Pushes a given item to the top of the stack
-	 * @param newItem The item
+	/**
+	 * Pushes a given item to the top of the stack
+	 * 
+	 * @param newItem
+	 *            The item
 	 */
 	public void push(T newItem) {
+		// now top.getNext points to the former top
 		top = new Node<T>(newItem, top);
 	}
 
-	/** Removes the item from the top of the stack and returns it
+	/**
+	 * Removes the item from the top of the stack and returns it
+	 * 
 	 * @return The item which was at the top of the stack, otherwise null
 	 */
 	public T pop() {
 		Node<T> tmp = top;
 		if (tmp != null) {
 			top = top.getNext();
-			return (tmp.getItem());
+			return tmp.getItem();
 		} else {
-			return (null);
+			// the stack is empty, so do nothing and return null
+			return null;
 		}
 	}
 
-	/** Returns the item currently at the top of the stack
+	/**
+	 * Returns the item currently at the top of the stack
+	 * 
 	 * @return The item currently at the top of the stack
 	 */
 	public T peek() {
@@ -56,12 +71,16 @@ public class ADTStack<T> {
 		top = null;
 	}
 
-	/** Creates a visual display of the stack
+	/**
+	 * Creates a visual display of the stack
+	 * 
 	 * @return A string representation of the stack
 	 */
 	public String toString() {
+		// so we don't have memory problems with concatenating many strings
 		StringBuilder buffer = new StringBuilder(']');
 		buffer.append('[');
+		// loop through all nodes and print the values, separated by commas
 		for (Node<T> curNode = top; curNode != null; curNode = curNode
 				.getNext()) {
 			buffer.append(curNode.getItem());
