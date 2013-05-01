@@ -36,7 +36,6 @@ public class Project_main extends JFrame{
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
-
 		//Label
 		JLabel lblChooseAnInput = new JLabel("Choose an input file");
 		panel.add(lblChooseAnInput);
