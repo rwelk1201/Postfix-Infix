@@ -5,7 +5,9 @@ public class Parser {
 
 	ADTList<String> tokens = new ADTList<String>();
 
-	/** Instantiates a new parser object with a given input string
+	/**
+	 * Instantiates a new parser object with a given input string
+	 * 
 	 * @param input
 	 *            An infix expression
 	 */
@@ -13,10 +15,12 @@ public class Parser {
 		tokens = tokenizer(input);
 	}
 
-	/** Computes the precedence of a given token
+	/**
+	 * Returns the precedence of a given string
+	 * 
 	 * @param token
-	 *            A token string
-	 * @return Precedence of @token
+	 *            the string
+	 * @return precedence of string
 	 */
 	private int precedence(String token) {
 		switch (token) {
@@ -34,10 +38,12 @@ public class Parser {
 		}
 	}
 
-	/** Returns whether or not a character is an operator
+	/**
+	 * Returns whether or not a Character is an operator
+	 * 
 	 * @param ch
-	 *            A character
-	 * @return A boolean value indicating whether or not the character is an
+	 *            the character
+	 * @return a boolean value indicating whether or not the Character is an
 	 *         operator
 	 */
 	private boolean isOperator(char ch) {
@@ -53,9 +59,18 @@ public class Parser {
 	}
 
 	/**
-	 * Converts the expression from infix to postfix
+	 * Returns the postfix representation of the expression If there are fewer
+	 * than 3 tokens, return null. Otherwise, loop through each token. If the
+	 * token is a left parenthesis, push the token onto the stack. If the token
+	 * is a right parenthesis, pop tokens off the stack until you reach a left
+	 * parentheses or the stack is empty. If the stack is empty, return null. If
+	 * the token is an operator, pop all tokens until you reach a parenthesis,
+	 * appending the values to the string buffer. Otherwise, if the token is an
+	 * operator, pop the stack until the stack is empty or the precedence of the
+	 * next token is greater than the current one. Trim the string buffer by one
+	 * character and return the concatenation of the strings.
 	 * 
-	 * @return A postfix expression string
+	 * @return A postfix string
 	 **/
 	public String infix2Postfix() {
 		if (tokens.size() < 3) {
@@ -107,7 +122,17 @@ public class Parser {
 	}
 
 	/**
-	 * @return An infix expression if valid, otherwise null
+	 * Returns the infix representation of the expression. To generate an infix
+	 * expression to convert, call infix2Postfix. Call tokenizer on the result
+	 * to generate a list of tokens. Instantiate an empty stack. Loop through
+	 * each token in the list. If the token isn't an operator, push it to the
+	 * stack. Otherwise, pop the next two tokens off the stack. Return null if
+	 * either token is null. Push the concatenation of a left parenthesis, the
+	 * first operand, the operator, the last operand, and a right parenthesis
+	 * onto the stack. When iteration is finished, pop the stack and return the
+	 * value.
+	 * 
+	 * @return An infix string
 	 */
 	public String postfix2Infix() {
 
@@ -133,7 +158,17 @@ public class Parser {
 		return stack.pop();
 	}
 
-	/** Returns a list of tokens from a given string
+	/**
+	 * Returns a list of tokens from a given string. Algorithm: Loop through all
+	 * characters in the input string. If the character is an operator or a
+	 * parenthesis, append the character to the token list. Otherwise if the
+	 * character is a letter, create a string of characters from the current
+	 * character to the next non-alphanumeric character and append that to the
+	 * token list. Otherwise if the character is a digit, create a string of
+	 * letters starting at the current character and extending to the next
+	 * non-digit character, and append that to the token list. All other
+	 * characters should be ignored.
+	 * 
 	 * @param input
 	 *            A string representing an expression
 	 * @return A list of generated tokens
@@ -169,9 +204,12 @@ public class Parser {
 	}
 
 	/**
-	 * @return Whether or not the expression is valid
+	 * Returns whether or not the expression is valid
+	 * 
+	 * @return A boolean value indicating whether or not the expression is valid
 	 */
 	public boolean isValid() {
+		// if infix2Postfix() returns null, the expression is invalid
 		return infix2Postfix() != null;
 	}
 }
