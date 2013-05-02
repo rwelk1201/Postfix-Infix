@@ -58,16 +58,35 @@ public class Parser {
 	}
 
 	/**
-	 * Returns the postfix representation of the expression If there are fewer
-	 * than 3 tokens, return null. Otherwise, loop through each token. If the
-	 * token is a left parenthesis, push the token onto the stack. If the token
-	 * is a right parenthesis, pop tokens off the stack until you reach a left
-	 * parentheses or the stack is empty. If the stack is empty, return null. If
-	 * the token is an operator, pop all tokens until you reach a parenthesis,
-	 * appending the values to the string buffer. Otherwise, if the token is an
-	 * operator, pop the stack until the stack is empty or the precedence of the
-	 * next token is greater than the current one. Trim the string buffer by one
-	 * character and return the concatenation of the strings.
+	 * Returns the postfix representation of the expression<br>
+	 * Algorithm:
+	 *  <code>
+	 *  <ul>
+	 *  <li>If there are fewer than 3 tokens,</li>
+	 *  	<ul><li>return null.</li></ul> 
+	 *  <li>Otherwise,</li>
+	 *  <ul><li>loop through each token. </li>
+	 *  	<ul><li>If the token is a left parenthesis, </li>
+	 *  		<ul><li>push the token onto the stack.</li></ul>
+	 *  		<li>If the token is a right parenthesis, </li>
+	 *  		<ul><li>pop tokens off the stack until you reach a left
+	 * 				<br>parentheses or the stack is empty. </li></ul>
+	 * 			<li>If the stack is empty, </li>
+	 * 			<ul><li>return null. </li></ul>
+	 * 			<li>If the token is an operator, </li>
+	 * 			<ul><li>pop all tokens until you reach a parenthesis,
+	 * 				<br>appending the values to the string buffer. </li></ul>
+	 * 			<li>Otherwise, if the token is an operator, </li>
+	 * 			<ul><li>pop the stack until the stack is empty 
+	 * 				<br>or the precedence of the next token is greater 
+	 * 				<br>than the current one. </li></ul>
+	 * 		</ul>
+	 * </ul>
+	 * <li>Trim the string buffer by one
+	 * <br>character and return the 
+	 * <br>concatenation of the strings.</li>
+	 * </ul>
+	 * </code>
 	 * 
 	 * @return A postfix string
 	 **/
@@ -121,15 +140,25 @@ public class Parser {
 	}
 
 	/**
-	 * Returns the infix representation of the expression. To generate an infix
-	 * expression to convert, call infix2Postfix. Call tokenizer on the result
-	 * to generate a list of tokens. Instantiate an empty stack. Loop through
-	 * each token in the list. If the token isn't an operator, push it to the
-	 * stack. Otherwise, pop the next two tokens off the stack. Return null if
-	 * either token is null. Push the concatenation of a left parenthesis, the
-	 * first operand, the operator, the last operand, and a right parenthesis
-	 * onto the stack. When iteration is finished, pop the stack and return the
-	 * value.
+	 * Returns the infix representation of the expression.<br>
+	 * <code>
+	 * <ul>
+	 * <li>To generate an infix expression to convert, call infix2Postfix.</li>
+	 * <li>Call tokenizer on the result to generate a list of tokens. </li>
+	 * <li>Instantiate an empty stack. </li>
+	 * <li>Loop through each token in the list.</li>
+	 * <ul>
+	 * 		<li>If the token isn't an operator, </li>
+	 * 		<ul><li>push it to the stack.</li></ul>
+	 * 		<li>Otherwise,</li>
+	 * 			<ul><li>pop the next two tokens off the stack.</li>
+	 * 				<li>Return null if either token is null.</li>
+	 * 				<li>Push the concatenation of a left parenthesis, the first operand, the operator, the last operand, and a right parenthesis
+	 * 				<br>onto the stack. When iteration is finished, pop the stack and return the
+	 * 				<br>value.</li></ul>
+	 * </ul>
+	 * </ul>
+	 * </code>
 	 * 
 	 * @return An infix string
 	 */
@@ -158,15 +187,26 @@ public class Parser {
 	}
 
 	/**
-	 * Returns a list of tokens from a given string. Algorithm: Loop through all
-	 * characters in the input string. If the character is an operator or a
-	 * parenthesis, append the character to the token list. Otherwise if the
-	 * character is a letter, create a string of characters from the current
-	 * character to the next non-alphanumeric character and append that to the
-	 * token list. Otherwise if the character is a digit, create a string of
-	 * letters starting at the current character and extending to the next
-	 * non-digit character, and append that to the token list. All other
-	 * characters should be ignored.
+	 * Returns a list of tokens from a given string.<br>
+	 * 
+	 * Algorithm: 
+	 * <code>
+	 * <ul>
+	 * <li>Loop through all characters in the input string.</li>
+	 * 	<ul><li>If the character is an operator or a parenthesis,</li>
+	 * 			<ul><li>append the character to the token list.</li></ul>
+	 * 		<li>Otherwise if the character is a letter, </li>
+	 * 		<ul><li>create a string of characters from the current
+	 * 			<br>character to the next non-alphanumeric character 
+	 * 			<br>and append that to the token list. </li></ul>
+	 * 		<li>Otherwise if the character is a digit, </li>
+	 * 		<ul><li>create a string of letters starting at the current character 
+	 * 			<br>and extending to the next non-digit character, 
+	 * 			<br>and append that to the token list. </li></ul>
+	 * 		<li>All other characters should be ignored.</li>
+	 * </ul>
+	 * </ul>
+	 * </code>
 	 * 
 	 * @param input
 	 *            A string representing an expression
