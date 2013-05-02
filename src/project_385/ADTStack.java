@@ -1,8 +1,7 @@
 package project_385;
 
-/**
- * A simple stack class for pushing, peeking, and popping items
- * @author Matthew
+/** A simple stack class for pushing, peeking, and popping items
+ * @author Matthew Dean
  *
  * @param <T>
  */
@@ -10,14 +9,13 @@ public class ADTStack<T> {
 
 	private Node<T> top;
 
-	/**
-	 * Instantiates an empty stack
+	/** Instantiates an empty stack
 	 */
 	public ADTStack() {
 		top = null;
 	}
 
-	/**
+	/** Returns the empty status of the stack
 	 * @return A boolean value indicating whether or not the stack is empty
 	 */
 	public boolean isEmpty() { // returns true if the list is empty, false if
@@ -25,8 +23,7 @@ public class ADTStack<T> {
 		return top == null;
 	}
 
-	/**
-	 * Pushes a given item to the top of the stack
+	/** Pushes a given item to the top of the stack
 	 * 
 	 * @param newItem
 	 *            The item
@@ -36,8 +33,7 @@ public class ADTStack<T> {
 		top = new Node<T>(newItem, top);
 	}
 
-	/**
-	 * Removes the item from the top of the stack and returns it
+	/** Removes the item from the top of the stack and returns it
 	 * 
 	 * @return The item which was at the top of the stack, otherwise null
 	 */
@@ -52,8 +48,7 @@ public class ADTStack<T> {
 		}
 	}
 
-	/**
-	 * Returns the item currently at the top of the stack
+	/** Returns the item currently at the top of the stack
 	 * 
 	 * @return The item currently at the top of the stack
 	 */
@@ -64,15 +59,13 @@ public class ADTStack<T> {
 		return top.getItem();
 	}
 
-	/**
-	 * Clears the stack
+	/** Clears the stack
 	 */
 	public void clear() {
 		top = null;
 	}
 
-	/**
-	 * Creates a visual display of the stack
+	/** Creates a visual display of the stack
 	 * 
 	 * @return A string representation of the stack
 	 */

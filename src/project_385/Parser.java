@@ -6,16 +6,14 @@ public class Parser {
 	ADTList<String> tokens = new ADTList<String>();
 
 	/** Instantiates a new parser object with a given input string
-	 * @param input
-	 *            An infix expression
+	 * @param input An infix expression
 	 */
 	public Parser(String input) {
 		tokens = tokenizer(input);
 	}
 
 	/** Computes the precedence of a given token
-	 * @param token
-	 *            A token string
+	 * @param token A token string
 	 * @return Precedence of @token
 	 */
 	private int precedence(String token) {
